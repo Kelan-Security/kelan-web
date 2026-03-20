@@ -1,49 +1,64 @@
-<script setup>
-import { RouterView } from 'vue-router'
-</script>
-
 <template>
-  <div class="min-h-screen bg-bg-primary text-text-primary selection:bg-accent-cyan/30 selection:text-white">
-    <!-- Navigation (Simple for now) -->
-    <nav class="fixed top-0 left-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-gradient-to-b from-bg-primary to-transparent pointer-events-none">
-      <div class="flex items-center gap-2 pointer-events-auto cursor-pointer" @click="$router.push('/')">
-        <div class="w-8 h-8 border-2 border-accent-cyan flex items-center justify-center rotate-45 group hover:rotate-90 transition-all duration-500">
-          <div class="w-2 h-2 bg-accent-cyan animate-pulse"></div>
-        </div>
-        <span class="font-display text-xl tracking-tighter uppercase font-bold text-accent-cyan">AITP</span>
-      </div>
-      
-      <div class="flex gap-8 pointer-events-auto">
-        <router-link to="/" class="font-mono text-sm hover:text-accent-cyan transition-colors">SPEC</router-link>
-        <router-link to="/login" class="font-mono text-sm hover:text-accent-cyan transition-colors">ENTER_TERMINAL</router-link>
-      </div>
-    </nav>
-
-    <RouterView v-slot="{ Component }">
-      <transition 
-        enter-active-class="transition-opacity duration-700 ease-out"
-        enter-from-class="opacity-0"
-        enter-to-class="opacity-100"
-        leave-active-class="transition-opacity duration-300 ease-in"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-        mode="out-in"
-      >
+  <div id="app">
+    <NavBar />
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
         <component :is="Component" />
       </transition>
-    </RouterView>
-
-    <!-- Global Cyber Grid Background -->
-    <div class="fixed inset-0 cyber-grid-bg pointer-events-none z-0"></div>
-    
-    <!-- Ambient Glow -->
-    <div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent-cyan/5 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="fixed bottom-[-5%] right-[-5%] w-[30%] h-[30%] bg-accent-emerald/5 rounded-full blur-[100px] pointer-events-none"></div>
+    </router-view>
+    <BottomNav />
+    <Footer />
+    <!-- Custom cursor -->
+    <div class="cursor" ref="cursor"></div>
+    <div class="cursor-trail" ref="cursorTrail"></div>
   </div>
 </template>
 
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import NavBar   from '@/components/layout/NavBar.vue'
+import BottomNav from '@/components/layout/BottomNav.vue'
+import Footer   from '@/components/layout/Footer.vue'
+
+const cursor      = ref<HTMLElement>()
+const cursorTrail = ref<HTMLElement>()
+
+onMounted(() => {
+  let trailX = 0, trailY = 0
+  window.addEventListener('mousemove', e => {
+    if(cursor.value) {
+      cursor.value.style.left = e.clientX + 'px'
+      cursor.value.style.top  = e.clientY + 'px'
+    }
+    requestAnimationFrame(() => {
+      trailX += (e.clientX - trailX) * 0.15
+      trailY += (e.clientY - trailY) * 0.15
+      if(cursorTrail.value) {
+        cursorTrail.value.style.left = trailX + 'px'
+        cursorTrail.value.style.top  = trailY + 'px'
+      }
+    })
+  })
+})
+</script>
+
 <style>
-.router-link-active {
-  @apply text-accent-cyan underline underline-offset-8;
+.cursor, .cursor-trail {
+  position: fixed; border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
 }
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--green-primary);
+  box-shadow: 0 0 8px rgba(57,255,20,0.8);
+}
+.cursor-trail {
+  width: 24px; height: 24px;
+  border: 1px solid rgba(57,255,20,0.4);
+  transition: width 0.15s, height 0.15s;
+}
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>

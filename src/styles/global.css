@@ -1,0 +1,128 @@
+/* Import Google Fonts — Syne (display) + Space Mono (mono) + DM Sans (body) */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+:root {
+  /* ── Colors ── */
+  --bg-void:        #030504;
+  --bg-deep:        #070c07;
+  --bg-card:        #0d150d;
+  --bg-card-hover:  #111a11;
+  --bg-glass:       rgba(13, 21, 13, 0.6);
+
+  --green-primary:  #39ff14;
+  --green-bright:   #00ff66;
+  --green-mid:      #22c55e;
+  --green-dim:      #166534;
+  --green-ghost:    rgba(57, 255, 20, 0.08);
+  --green-glow:     rgba(57, 255, 20, 0.15);
+  --green-glow-lg:  rgba(57, 255, 20, 0.25);
+
+  --text-primary:   #f0f0f0;
+  --text-secondary: #9ca3a0;
+  --text-dim:       #4a5550;
+  --text-accent:    var(--green-primary);
+
+  --border-subtle:  rgba(57, 255, 20, 0.12);
+  --border-card:    rgba(57, 255, 20, 0.2);
+  --border-active:  rgba(57, 255, 20, 0.5);
+
+  /* ── Typography ── */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  /* ── Spacing ── */
+  --nav-height:   72px;
+  --section-pad:  120px;
+  --card-radius:  16px;
+
+  /* ── Shadows ── */
+  --glow-sm:    0 0 12px rgba(57, 255, 20, 0.3);
+  --glow-md:    0 0 24px rgba(57, 255, 20, 0.25), 0 0 48px rgba(57, 255, 20, 0.1);
+  --glow-lg:    0 0 60px rgba(57, 255, 20, 0.2), 0 0 120px rgba(57, 255, 20, 0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--green-dim) var(--bg-void);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+  cursor: none; /* custom cursor below */
+}
+
+/* Custom cursor */
+body::after {
+  content: '';
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--green-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: var(--glow-sm);
+  transition: transform 0.1s ease;
+  /* Position driven by JS */
+}
+
+/* Selection */
+::selection { background: var(--green-ghost); color: var(--green-primary); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
+::-webkit-scrollbar-thumb { background: var(--green-dim); border-radius: 2px; }
+
+/* Typography scale */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.display-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+.mono { font-family: var(--font-mono); }
+.text-green { color: var(--green-primary); }
+.text-dim    { color: var(--text-secondary); }
+
+/* Section layout */
+.section {
+  padding: var(--section-pad) 6vw;
+  position: relative;
+  overflow: hidden;
+}
+.container { max-width: 1280px; margin: 0 auto; }
+
+/* Reveal animation base */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
