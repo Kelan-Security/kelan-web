@@ -11,7 +11,7 @@
               <path d="M14 2L14 8M14 20L14 26M3 8L8 11M20 17L25 20M3 20L8 17M20 11L25 8" stroke="#39ff14" stroke-width="0.75" opacity="0.5"/>
               <circle cx="14" cy="14" r="3" fill="#39ff14" opacity="0.8"/>
             </svg>
-            <span class="logo-text">KERNEX</span>
+            <span class="logo-text">KELAN SECURITY</span>
           </div>
           <p class="tagline">The Network Has a Brain Now.</p>
         </div>

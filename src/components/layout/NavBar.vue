@@ -10,7 +10,7 @@
               stroke="#39ff14" stroke-width="0.75" opacity="0.5"/>
         <circle cx="14" cy="14" r="3" fill="#39ff14" opacity="0.8"/>
       </svg>
-      <span class="logo-text">KERNEX</span>
+      <span class="logo-text">KELAN SECURITY</span>
     </div>
 
     <!-- Right actions -->

@@ -8,7 +8,7 @@
         <!-- Without Kelan Security -->
         <GlassCard class="demo-pane demo-bad reveal" style="transition-delay: 0.2s;">
           <div class="pane-header">
-            <span class="mono">WITHOUT KERNEX</span>
+            <span class="mono">WITHOUT KELAN</span>
             <div class="status-dot bad"></div>
           </div>
           <div class="demo-stage">
@@ -27,7 +27,7 @@
         <!-- With Kelan Security -->
         <GlassCard class="demo-pane demo-good reveal" style="transition-delay: 0.3s;" withGlow>
           <div class="pane-header">
-            <span class="mono text-green">WITH KERNEX</span>
+            <span class="mono text-green">WITH KELAN</span>
             <div class="status-dot good"></div>
           </div>
           <div class="demo-stage">
