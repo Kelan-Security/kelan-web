@@ -1,108 +1,270 @@
 <template>
-  <section class="pricing-section section">
+  <!-- PRICING SECTION -->
+  <section id="pricing" class="pricing-section">
     <div class="container">
-      <div class="text-center reveal">
-        <SectionBadge text="Pricing" />
-        <h2 class="display-lg text-main">Simple, transparent pricing.</h2>
-        <p class="desc mx-auto">Start free, scale as your network grows.</p>
+      <div class="text-center">
+        <div class="section-label">[ PRICING ]</div>
+        <h2 class="section-title">
+          Transparent pricing.<br>
+          <span style="color:#39FF14;">Start free. Scale with confidence.</span>
+        </h2>
+        <p class="section-sub">
+          Every tier includes Ed25519 identity verification, Gemini 2.5 trust evaluation,
+          and Sentinel continuous monitoring. No hidden costs. No lock-in.
+        </p>
       </div>
 
-      <div class="pricing-grid mt-xl">
-        <!-- Community -->
-        <GlassCard class="pricing-card reveal" style="transition-delay: 0.1s;">
-          <h3 class="tier-name mono">COMMUNITY</h3>
-          <div class="price display-md">Free<span class="period">/forever</span></div>
-          <p class="tier-desc">Perfect for homelabs and small projects.</p>
-          <ul class="features">
-            <li><span class="check text-green">✓</span> ≤ 5 nodes</li>
-            <li><span class="check text-green">✓</span> Basic anomaly detection</li>
-            <li><span class="check text-green">✓</span> Community support</li>
-            <li class="disabled"><span class="check text-dim">—</span> Extended data retention</li>
-          </ul>
-          <GlowButton label="Get Started" variant="outline" class="w-full mt-auto" />
-        </GlassCard>
+      <div class="pricing-grid">
+        <!-- FREE / OPEN SOURCE -->
+        <div class="price-card">
+          <div class="price-tier-label">FREE & OPEN SOURCE</div>
+          <div class="price-amount">$0</div>
+          <div class="price-inr">₹0 / forever</div>
+          <div class="price-desc">
+            Full source code on GitHub. Self-host with your own Gemini API key.
+            Perfect for developers, researchers, and security teams evaluating Kelan.
+          </div>
+          <div class="price-features">
+            <div class="price-feat">● Up to 5 nodes</div>
+            <div class="price-feat">● SQLite database</div>
+            <div class="price-feat">● Gemini 2.5 trust evaluation</div>
+            <div class="price-feat">● Sentinel monitoring</div>
+            <div class="price-feat">● Community support (GitHub Issues)</div>
+            <div class="price-feat" style="color:#6B7A6B;">○ Non-commercial use (BSL 1.1)</div>
+          </div>
+          <a href="https://github.com/Kelan-Security/kelan-core"
+             target="_blank" rel="noopener noreferrer"
+             class="price-btn price-btn-outline">
+            View on GitHub →
+          </a>
+        </div>
 
-        <!-- Startup -->
-        <GlassCard class="pricing-card popular reveal" style="transition-delay: 0.2s;" withGlow>
-          <div class="popular-badge mono">MOST SECURE</div>
-          <h3 class="tier-name mono text-green">STARTUP</h3>
-          <div class="price display-md">$299<span class="period">/mo</span></div>
-          <p class="tier-desc">Advanced protection for scaling teams.</p>
-          <ul class="features">
-            <li><span class="check text-green">✓</span> ≤ 50 nodes</li>
-            <li><span class="check text-green">✓</span> Gemini Flash Trust Eval</li>
-            <li><span class="check text-green">✓</span> Priority email support</li>
-            <li><span class="check text-green">✓</span> 30-day data retention</li>
-          </ul>
-          <GlowButton label="Start 14-day trial" variant="solid" class="w-full mt-auto" />
-        </GlassCard>
+        <!-- STARTUP -->
+        <div class="price-card">
+          <div class="price-tier-label">STARTUP</div>
+          <div class="price-amount">$499</div>
+          <div class="price-inr">₹41,500 / month</div>
+          <div class="price-desc">
+            Commercial license for growing teams. Postgres support, webhooks,
+            and email support included. Up to 50 enrolled nodes.
+          </div>
+          <div class="price-features">
+            <div class="price-feat">● Up to 50 nodes</div>
+            <div class="price-feat">● PostgreSQL support</div>
+            <div class="price-feat">● Gemini 2.5 trust evaluation</div>
+            <div class="price-feat">● Sentinel + Threat agent</div>
+            <div class="price-feat">● Webhook integrations</div>
+            <div class="price-feat">● Email support (48h SLA)</div>
+          </div>
+          <a href="mailto:team@kelan.io?subject=Startup plan inquiry"
+             class="price-btn price-btn-outline">
+            Contact us →
+          </a>
+        </div>
 
-        <!-- Enterprise -->
-        <GlassCard class="pricing-card reveal" style="transition-delay: 0.3s;">
-          <h3 class="tier-name mono">ENTERPRISE</h3>
-          <div class="price display-md">$1500<span class="period">/mo</span></div>
-          <p class="tier-desc">Custom deployment for mission-critical apps.</p>
-          <ul class="features">
-            <li><span class="check text-green">✓</span> Unlimited nodes</li>
-            <li><span class="check text-green">✓</span> Air-gap capable</li>
-            <li><span class="check text-green">✓</span> 24/7 dedicated support</li>
-            <li><span class="check text-green">✓</span> Custom model fine-tuning</li>
-          </ul>
-          <GlowButton label="Contact Sales" variant="outline" class="w-full mt-auto" />
-        </GlassCard>
+        <!-- ENTERPRISE — featured -->
+        <div class="price-card price-card-featured">
+          <div class="price-featured-badge">MOST POPULAR</div>
+          <div class="price-tier-label" style="color:#39FF14;">ENTERPRISE</div>
+          <div class="price-amount">$2,000</div>
+          <div class="price-inr">₹1,66,500 / month</div>
+          <div class="price-desc">
+            Unlimited scale. Air-gap mode, SSO, custom retention, and a dedicated
+            customer success manager. For organisations where security is non-negotiable.
+          </div>
+          <div class="price-features">
+            <div class="price-feat" style="color:#39FF14;">● Unlimited nodes</div>
+            <div class="price-feat" style="color:#39FF14;">● PostgreSQL + air-gap mode</div>
+            <div class="price-feat" style="color:#39FF14;">● SSO (SAML / OIDC)</div>
+            <div class="price-feat" style="color:#39FF14;">● Custom retention policies</div>
+            <div class="price-feat" style="color:#39FF14;">● Priority support (4h SLA)</div>
+            <div class="price-feat" style="color:#39FF14;">● Dedicated CSM</div>
+          </div>
+          <a href="mailto:team@kelan.io?subject=Enterprise plan inquiry"
+             class="price-btn price-btn-primary">
+            Contact us →
+          </a>
+        </div>
+
+        <!-- DEFENSE -->
+        <div class="price-card">
+          <div class="price-tier-label">DEFENSE</div>
+          <div class="price-amount">Custom</div>
+          <div class="price-inr">Annual contract</div>
+          <div class="price-desc">
+            Full air-gap deployment, FIPS 140-2 compliant mode, clearance-level
+            gating, and source code escrow. Built for classified environments.
+          </div>
+          <div class="price-features">
+            <div class="price-feat">● Unlimited nodes</div>
+            <div class="price-feat">● Full air-gap (local LLM)</div>
+            <div class="price-feat">● FIPS 140-2 compliance mode</div>
+            <div class="price-feat">● Clearance-level enforcement</div>
+            <div class="price-feat">● Source code escrow</div>
+            <div class="price-feat">● Dedicated deployment support</div>
+          </div>
+          <a href="mailto:team@kelan.io?subject=Defense deployment inquiry"
+             class="price-btn price-btn-outline">
+            Talk to us →
+          </a>
+        </div>
+      </div>
+
+      <!-- Pilot offer -->
+      <div class="pilot-strip">
+        <div>
+          <div class="pilot-title">Not ready to commit? Run a free 90-day Enterprise pilot.</div>
+          <div class="pilot-sub">Full Enterprise features. No credit card required. We help you set it up.</div>
+        </div>
+        <a href="mailto:team@kelan.io?subject=90-day pilot request" class="price-btn price-btn-primary">
+          Request pilot →
+        </a>
       </div>
     </div>
   </section>
 </template>
 
-<script setup lang="ts">
-import SectionBadge from '@/components/ui/SectionBadge.vue'
-import GlassCard from '@/components/ui/GlassCard.vue'
-import GlowButton from '@/components/ui/GlowButton.vue'
-</script>
-
 <style scoped>
-.pricing-section { background: var(--bg-deep); padding: 120px 6vw; }
-.text-center { text-align: center; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-.text-main { margin-bottom: 16px; font-size: clamp(2rem, 4vw, 3rem); }
-.desc { color: var(--text-secondary); max-width: 500px; font-size: 15px; }
-.mt-xl { margin-top: 60px; }
-
-.pricing-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-  align-items: stretch;
-}
-.pricing-card {
-  display: flex; flex-direction: column; padding: 40px 32px;
+.pricing-section {
+  padding: 100px 0;
+  background: #050705;
   position: relative;
 }
-.popular { border-color: var(--border-active); background: rgba(13,21,13,0.8); transform: translateY(-10px); }
-.popular-badge {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: var(--green-primary); color: #000; font-size: 10px;
-  padding: 4px 12px; border-radius: 100px; font-weight: 700;
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(57,255,20,0.08); /* Grid line color */
+}
+
+.price-card {
+  background: #0A0F0A;
+  padding: 40px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-card-featured {
+  background: #0F1A0F;
+  border-top: 2px solid #39FF14;
+}
+
+.price-featured-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #39FF14;
+  color: #000;
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 12px;
   letter-spacing: 0.1em;
+  white-space: nowrap;
 }
 
-.tier-name { font-size: 12px; letter-spacing: 0.15em; color: var(--text-dim); margin-bottom: 20px; }
-.price { color: var(--text-primary); margin-bottom: 12px; }
-.period { font-size: 14px; font-family: var(--font-body); color: var(--text-dim); font-weight: 400; }
-.tier-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 32px; }
-
-.features { list-style: none; margin-bottom: 40px; flex-grow: 1; }
-.features li {
-  display: flex; align-items: flex-start; gap: 12px;
-  margin-bottom: 16px; font-size: 14px; color: var(--text-primary);
+.price-tier-label {
+  font-family: monospace;
+  font-size: 11px;
+  color: #6B7A6B;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
 }
-.features li.disabled { color: var(--text-dim); }
-.check { font-size: 12px; margin-top: 2px; }
 
-.w-full { width: 100%; justify-content: center; }
-.mt-auto { margin-top: auto; }
+.price-amount {
+  font-size: 48px;
+  font-weight: 900;
+  color: #FFF;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.price-inr {
+  font-family: monospace;
+  font-size: 12px;
+  color: #6B7A6B;
+  margin-bottom: 24px;
+}
+
+.price-desc {
+  font-size: 14px;
+  color: #6B7A6B;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(57,255,20,0.1);
+  flex-grow: 1;
+}
+
+.price-features {
+  margin-bottom: 32px;
+}
+
+.price-feat {
+  font-size: 13px;
+  color: #6B7A6B;
+  line-height: 2.2;
+}
+
+.price-btn {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  font-family: monospace;
+  font-size: 13px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.price-btn-outline {
+  border: 1px solid rgba(57,255,20,0.35);
+  color: #39FF14;
+  background: transparent;
+}
+
+.price-btn-outline:hover {
+  background: rgba(57,255,20,0.08);
+  border-color: #39FF14;
+}
+
+.price-btn-primary {
+  background: #39FF14;
+  color: #000;
+  font-weight: 700;
+}
+
+.price-btn-primary:hover {
+  background: #2ee010;
+  transform: translateY(-1px);
+}
+
+.pilot-strip {
+  max-width: 1200px;
+  margin: 2px auto 0;
+  padding: 32px 40px;
+  background: #0F1A0F;
+  border: 1px solid rgba(57,255,20,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.pilot-title { font-size: 18px; font-weight: 700; color: #FFF; margin-bottom: 4px; }
+.pilot-sub { font-size: 14px; color: #6B7A6B; }
 
 @media (max-width: 1024px) {
-  .pricing-grid { grid-template-columns: 1fr; gap: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
-  .popular { transform: none; }
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  .pilot-strip { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 640px) {
+  .pricing-grid { grid-template-columns: 1fr; }
 }
 </style>

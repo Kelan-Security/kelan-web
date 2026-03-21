@@ -1,6 +1,35 @@
 /* Import Google Fonts — Syne (display) + Space Mono (mono) + DM Sans (body) */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+/* Shared section styles */
+.section-label {
+  text-align: center;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: #39FF14;
+  border: 1px solid rgba(57,255,20,0.3);
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 24px;
+}
+.section-title {
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 900;
+  color: #FFF;
+  text-align: center;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+.section-sub {
+  text-align: center;
+  color: #6B7A6B;
+  max-width: 520px;
+  margin: 0 auto 64px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
 :root {
   /* ── Colors ── */
   --bg-void:        #030504;
@@ -33,7 +62,7 @@
 
   /* ── Spacing ── */
   --nav-height:   72px;
-  --section-pad:  120px;
+  --section-pad:  60px;
   --card-radius:  16px;
 
   /* ── Shadows ── */

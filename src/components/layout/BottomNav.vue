@@ -2,14 +2,14 @@
   <nav class="bottom-nav">
     <div class="bottom-nav-inner">
       <span class="nav-dot"></span>
-      <router-link
-        v-for="item in navItems" :key="item.path"
-        :to="item.path"
+      <a
+        v-for="item in navItems" :key="item.id"
+        href="#"
         class="bottom-nav-item"
-        :class="{ active: $route.path === item.path }"
+        @click.prevent="scrollTo(item.id)"
       >
         {{ item.label }}
-      </router-link>
+      </a>
       <span class="nav-dot"></span>
     </div>
   </nav>
@@ -17,11 +17,20 @@
 
 <script setup lang="ts">
 const navItems = [
-  { label: 'Home',    path: '/' },
-  { label: 'Product', path: '/product' },
-  { label: 'Docs',    path: '/docs' },
-  { label: 'About',   path: '/about' },
+  { label: 'Home',    id: 'hero' },
+  { label: 'Product', id: 'product' },
+  { label: 'About',   id: 'about' },
+  { label: 'Docs',    id: 'docs' },
 ]
+
+const scrollTo = (id: string) => {
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+  } else if (id === 'hero') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
 </script>
 
 <style scoped>

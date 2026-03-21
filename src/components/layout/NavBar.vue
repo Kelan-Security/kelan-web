@@ -15,10 +15,12 @@
 
     <!-- Right actions -->
     <div class="nav-actions">
+      <a href="#product" class="nav-link mono" @click.prevent="scrollTo('product')">Product</a>
+      <a href="#pricing" class="nav-link mono" @click.prevent="scrollTo('pricing')">Pricing</a>
+      <a href="#docs" class="nav-link mono" @click.prevent="scrollTo('docs')">Docs</a>
       <a href="https://github.com/kelan-security/kelan-core"
          target="_blank" class="nav-link mono">GitHub</a>
-      <a href="/docs" class="nav-link mono">Docs</a>
-      <button class="contact-pill" @click="scrollToContact">
+      <button class="contact-pill" @click="scrollTo('contact')">
         <span>Contact us</span>
         <div class="contact-dot"></div>
       </button>
@@ -27,8 +29,8 @@
 </template>
 
 <script setup lang="ts">
-const scrollToContact = () => {
-  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+const scrollTo = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 

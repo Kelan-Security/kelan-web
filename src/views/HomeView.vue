@@ -8,6 +8,7 @@
     <ThreatDemo />
     <AboutSection />
     <PricingSection />
+    <DocsSection />
     <ContactSection />
   </main>
 </template>
@@ -22,10 +23,13 @@ import SentinelSection from '@/components/home/SentinelSection.vue'
 import ThreatDemo     from '@/components/home/ThreatDemo.vue'
 import AboutSection   from '@/components/home/AboutSection.vue'
 import PricingSection from '@/components/home/PricingSection.vue'
+import DocsSection    from '@/components/home/DocsSection.vue'
 import ContactSection from '@/components/home/ContactSection.vue'
 import { useScrollReveal } from '@/composables/useScrollReveal'
 
+useScrollReveal('.reveal')
+
 onMounted(() => {
-  useScrollReveal('.reveal')
+  // Any other mount-time logic
 })
 </script>

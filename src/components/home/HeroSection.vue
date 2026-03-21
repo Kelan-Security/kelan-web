@@ -24,9 +24,9 @@
 
       <!-- Description - right column -->
       <p class="hero-desc">
-        Agentic AI that lives at the transport layer.
-        Every session. Every packet. Verified before
-        your applications ever see it.
+        Automated Threat Detection and Response.
+        <br>
+        <span class="text-green">10x Faster</span>
       </p>
 
       <div class="hero-actions">

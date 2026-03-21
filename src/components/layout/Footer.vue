@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const scrollTo = (id: string) => {
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' })
+  } else if (id === 'hero') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+</script>
+
 <template>
   <footer class="footer">
     <div class="footer-bg"></div>
@@ -31,10 +42,10 @@
         <div class="footer-col">
           <h4 class="col-title mono">EXPLORE</h4>
           <ul class="col-links">
-            <li><router-link to="/">Home</router-link></li>
-            <li><router-link to="/product">Product</router-link></li>
-            <li><router-link to="/about">About Us</router-link></li>
-            <li><a href="/docs">Documentation</a></li>
+            <li><a href="#hero" @click.prevent="scrollTo('hero')">Home</a></li>
+            <li><a href="#product" @click.prevent="scrollTo('product')">Product</a></li>
+            <li><a href="#about" @click.prevent="scrollTo('about')">About Us</a></li>
+            <li><a href="#docs" @click.prevent="scrollTo('docs')">Documentation</a></li>
           </ul>
         </div>
 
