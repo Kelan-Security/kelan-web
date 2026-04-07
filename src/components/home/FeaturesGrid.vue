@@ -109,7 +109,7 @@ import BracketNum from '@/components/ui/BracketNum.vue'
 .kernel-ring {
   width: 80px; height: 80px; border-radius: 50%;
   border: 2px solid var(--green-primary);
-  box-shadow: var(--glow-md), inset 0 0 20px rgba(57,255,20,0.1);
+  box-shadow: var(--glow-md), inset 0 0 20px rgba(0, 255, 159,0.1);
   animation: spin-slow 10s linear infinite;
   margin-bottom: 12px;
 }
@@ -117,7 +117,7 @@ import BracketNum from '@/components/ui/BracketNum.vue'
 .kernel-time  { font-size: 10px; color: var(--text-dim); margin-top: 4px; }
 .sentinel-badge {
   display: inline-block; padding: 6px 16px;
-  background: rgba(57,255,20,0.1);
+  background: rgba(0, 255, 159,0.1);
   border: 1px solid var(--border-card);
   border-radius: 100px; font-size: 11px;
   color: var(--green-primary); margin-bottom: 16px;

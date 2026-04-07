@@ -81,7 +81,7 @@ const anomalyClasses = [
 }
 .radar-scan {
   position: absolute; top: 50%; left: 50%; width: 200%; height: 200%;
-  background: conic-gradient(from 0deg, transparent 70%, rgba(57,255,20,0.2) 100%);
+  background: conic-gradient(from 0deg, transparent 70%, rgba(0, 255, 159,0.2) 100%);
   transform-origin: center;
   animation: spin-slow 4s linear infinite;
   transform: translate(-50%, -50%);
@@ -118,7 +118,7 @@ const anomalyClasses = [
   font-family: var(--font-display); font-size: 15px; font-weight: 600;
   color: var(--text-primary);
 }
-.anomaly-card:hover { background: rgba(57,255,20,0.05); }
+.anomaly-card:hover { background: rgba(0, 255, 159,0.05); }
 
 @media (max-width: 1024px) {
   .sentinel-layout { grid-template-columns: 1fr; }

@@ -9,39 +9,41 @@
 
     <!-- Content -->
     <div class="hero-content">
-      <SectionBadge text="Transport Layer Security" />
+      <div class="hero-text-container">
+        <SectionBadge text="AITP Security Gateway" />
+        
+        <h1 class="hero-headline display-xl">
+          <span class="line">The Network</span>
+          <span class="line accent">Has a Brain</span>
+          <span class="line dim">Now.</span>
+        </h1>
 
-      <h1 class="hero-headline display-xl">
-        <span class="line">The Network</span>
-        <span class="line accent">Has a Brain</span>
-        <span class="line dim">Now.</span>
-      </h1>
+        <p class="hero-desc">
+          Automated Threat Detection and Response driven by Agentic AI and eBPF. 
+          <span class="text-green">10x Faster isolation.</span>
+        </p>
 
-      <!-- Floating orb - right side -->
-      <div class="hero-orb">
-        <ParticleOrb />
+        <div class="hero-actions">
+          <GlowButton label="Get started" variant="solid" @click="scrollToDocs" />
+          <a href="https://github.com/kelan-security/kelan-core"
+             target="_blank"
+             class="hero-link mono">
+            ↗ View on GitHub
+          </a>
+        </div>
       </div>
 
-      <!-- Description - right column -->
-      <p class="hero-desc">
-        Automated Threat Detection and Response.
-        <br>
-        <span class="text-green">10x Faster</span>
-      </p>
-
-      <div class="hero-actions">
-        <GlowButton label="Get started" variant="pill" @click="scrollToDocs" />
-        <a href="https://github.com/kelan-security/kelan-core"
-           class="hero-link mono">
-          ↗ View on GitHub
-        </a>
+      <!-- Floating orb - right side -->
+      <div class="hero-orb-container">
+        <!-- Re-use ParticleOrb which now wraps Spline Viewer -->
+        <ParticleOrb />
       </div>
     </div>
 
     <!-- Scroll hint -->
     <div class="scroll-hint mono">
-      <span>↓</span>
-      <span>Scroll to explore</span>
+      <span class="scroll-arrow">↓</span>
+      <span>SCROLL TO EXPLORE</span>
     </div>
   </section>
 </template>
@@ -49,10 +51,12 @@
 <script setup lang="ts">
 import SectionBadge from '@/components/ui/SectionBadge.vue'
 import GlowButton from '@/components/ui/GlowButton.vue'
-import ParticleCanvas from '@/components/ui/ParticleCanvas.vue'
 import ParticleOrb from './ParticleOrb.vue'
+import ParticleCanvas from '@/components/ui/ParticleCanvas.vue'
 
-const scrollToDocs = () => window.open('https://docs.kelansecurtity.io', '_blank')
+const scrollToDocs = () => {
+  document.getElementById('docs')?.scrollIntoView({ behavior: 'smooth' })
+}
 </script>
 
 <style scoped>
@@ -61,6 +65,7 @@ const scrollToDocs = () => window.open('https://docs.kelansecurtity.io', '_blank
   display: flex; flex-direction: column; justify-content: center;
   padding: 120px 6vw 100px;
   position: relative; overflow: hidden;
+  background: transparent;
 }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
@@ -69,61 +74,124 @@ const scrollToDocs = () => window.open('https://docs.kelansecurtity.io', '_blank
   position: absolute;
   top: -20%; left: -10%;
   width: 60%; height: 80%;
-  background: radial-gradient(ellipse, rgba(57,255,20,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(20, 184, 166, 0.05) 0%, transparent 60%);
   pointer-events: none;
+  filter: blur(80px);
 }
 .bg-glow-2 {
   position: absolute;
   bottom: -10%; right: 5%;
   width: 50%; height: 60%;
-  background: radial-gradient(ellipse, rgba(57,255,20,0.04) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
   pointer-events: none;
+  filter: blur(80px);
 }
 .hero-content {
   position: relative; z-index: 2;
-  max-width: 1280px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr auto;
-  gap: 32px;
-  align-items: start;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+.hero-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .hero-headline {
-  grid-column: 1; grid-row: 2;
+  margin-bottom: 32px;
 }
 .hero-headline .line {
   display: block;
 }
-.hero-headline .accent { color: var(--green-primary); }
-.hero-headline .dim    { color: var(--text-secondary); }
-.hero-orb {
-  grid-column: 2; grid-row: 1 / 4;
-  display: flex; align-items: center; justify-content: center;
-  animation: float 8s ease-in-out infinite;
+.hero-headline .accent { 
+  color: var(--green-bright); 
+}
+.hero-headline .dim { 
+  color: var(--text-dim); 
 }
 .hero-desc {
-  grid-column: 2; grid-row: 2;
-  font-size: 15px; line-height: 1.7;
+  font-size: 18px; line-height: 1.8;
   color: var(--text-secondary);
-  max-width: 280px;
-  align-self: end;
+  max-width: 480px;
+  margin-bottom: 48px;
 }
+
 .hero-actions {
-  grid-column: 1; grid-row: 3;
-  display: flex; align-items: center; gap: 28px;
-  padding-top: 16px;
+  display: flex; align-items: center; gap: 32px;
 }
 .hero-link {
-  font-size: 13px; color: var(--text-secondary);
+  font-size: 14px; color: var(--text-secondary);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.3s;
+  position: relative;
 }
-.hero-link:hover { color: var(--green-primary); }
+.hero-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--green-primary);
+  transition: width 0.3s;
+}
+.hero-link:hover { 
+  color: var(--green-primary); 
+  text-shadow: var(--glow-sm);
+}
+.hero-link:hover::after { width: 100%; }
+
+.hero-orb-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* subtle vertical float, but the actual orb is handled by Spline */
+  animation: float-container 8s ease-in-out infinite; 
+}
+
+@keyframes float-container {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
 .scroll-hint {
-  position: absolute; bottom: 32px; left: 6vw;
+  position: absolute; bottom: 40px; left: 6vw;
   display: flex; align-items: center; gap: 12px;
   font-size: 12px; color: var(--text-dim);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   z-index: 2;
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+.scroll-hint:hover {
+  opacity: 1;
+  color: var(--green-primary);
+  text-shadow: var(--glow-sm);
+}
+.scroll-arrow {
+  color: var(--green-primary);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+@media (max-width: 992px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 60px;
+  }
+  .hero-text-container {
+    align-items: center;
+  }
+  .hero-desc {
+    margin: 0 auto 40px;
+  }
 }
 </style>

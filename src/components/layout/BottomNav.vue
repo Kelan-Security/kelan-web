@@ -45,7 +45,7 @@ const scrollTo = (id: string) => {
   border: 1px solid var(--border-card);
   border-radius: 100px;
   backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(57,255,20,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(0, 255, 159,0.1);
 }
 .nav-dot {
   width: 6px; height: 6px; border-radius: 50%;
@@ -62,7 +62,7 @@ const scrollTo = (id: string) => {
 }
 .bottom-nav-item:hover { color: var(--text-primary); }
 .bottom-nav-item.active {
-  background: rgba(57,255,20,0.12);
+  background: rgba(0, 255, 159,0.12);
   color: var(--green-primary);
 }
 </style>

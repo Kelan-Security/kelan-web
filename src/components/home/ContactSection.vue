@@ -70,15 +70,15 @@ const drawFingerprint = (canvas: HTMLCanvasElement, lines: number, color: string
 }
 
 onMounted(() => {
-  if(blob1.value) drawFingerprint(blob1.value, 15, '#39ff14')
-  if(blob2.value) drawFingerprint(blob2.value, 12, 'rgba(57,255,20,0.4)')
+  if(blob1.value) drawFingerprint(blob1.value, 15, 'var(--green-primary)')
+  if(blob2.value) drawFingerprint(blob2.value, 12, 'rgba(0, 255, 159,0.4)')
 })
 </script>
 
 <style scoped>
 .contact-section {
   text-align: center;
-  background: radial-gradient(ellipse at center, rgba(57,255,20,0.04) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(0, 255, 159,0.04) 0%, transparent 60%);
   padding: 120px 6vw;
 }
 .contact-content { position: relative; z-index: 2; }
@@ -88,7 +88,7 @@ onMounted(() => {
   display: flex; align-items: center; justify-content: center;
 }
 .fingerprint-blob canvas {
-  filter: drop-shadow(0 0 20px rgba(57,255,20,0.4));
+  filter: drop-shadow(0 0 20px rgba(0, 255, 159,0.4));
   opacity: 0.7;
 }
 .contact-desc {

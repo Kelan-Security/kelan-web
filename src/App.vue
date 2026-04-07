@@ -52,11 +52,11 @@ onMounted(() => {
 .cursor {
   width: 8px; height: 8px;
   background: var(--green-primary);
-  box-shadow: 0 0 8px rgba(57,255,20,0.8);
+  box-shadow: 0 0 8px rgba(0, 255, 159,0.8);
 }
 .cursor-trail {
   width: 24px; height: 24px;
-  border: 1px solid rgba(57,255,20,0.4);
+  border: 1px solid rgba(0, 255, 159,0.4);
   transition: width 0.15s, height 0.15s;
 }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }

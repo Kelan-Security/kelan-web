@@ -23,7 +23,7 @@
           <div 
             v-for="stage in stages" 
             :key="stage.id"
-            class="kc-stage" 
+            class="kc-stage glass-panel" 
             :class="{ active: selectedStage === stage.id }"
             @click="selectStage(stage.id)"
           >
@@ -64,7 +64,7 @@
 
       <!-- ── Capability cards -->
       <div class="capability-grid reveal">
-        <div v-for="cap in capabilities" :key="cap.label" class="cap-card">
+        <div v-for="cap in capabilities" :key="cap.label" class="cap-card glass-panel">
           <div class="cap-label mono">{{ cap.label }}</div>
           <div class="cap-value display-md">
             {{ cap.value }}<span class="cap-unit text-green">{{ cap.unit }}</span>
@@ -131,14 +131,14 @@ const selectStage = (n: number) => {
 // Terminal Ticker
 const tickerLines = ref<{time: string, content: string}[]>([])
 const tickerRaw = [
-  '<span style="color:#39FF14">ALLOW</span>  entity:a4f3c2b1 → ml-cluster-01  intent:ModelInference  score:218  2.1ms',
-  '<span style="color:#39FF14">ALLOW</span>  entity:b7d2e8f4 → api-gateway-03  intent:DataSync        score:201  1.9ms',
+  '<span style="color:var(--green-primary)">ALLOW</span>  entity:a4f3c2b1 → ml-cluster-01  intent:ModelInference  score:218  2.1ms',
+  '<span style="color:var(--green-primary)">ALLOW</span>  entity:b7d2e8f4 → api-gateway-03  intent:DataSync        score:201  1.9ms',
   '<span style="color:#ff4444">DENY </span>  entity:c9f1a3b2 → finance-db-01   intent:DataSync        score:18   NewPeer anomaly',
-  '<span style="color:#39FF14">ALLOW</span>  entity:d4e5c7a8 → analytics-svc   intent:Telemetry       score:234  1.7ms',
+  '<span style="color:var(--green-primary)">ALLOW</span>  entity:d4e5c7a8 → analytics-svc   intent:Telemetry       score:234  1.7ms',
   '<span style="color:#ff8800">ALERT</span>  entity:c9f1a3b2 quarantined — lateral movement detected — 0 sessions killed',
-  '<span style="color:#39FF14">ALLOW</span>  entity:e2b6d9f1 → ml-cluster-02   intent:ModelInference  score:209  2.3ms',
+  '<span style="color:var(--green-primary)">ALLOW</span>  entity:e2b6d9f1 → ml-cluster-02   intent:ModelInference  score:209  2.3ms',
   '<span style="color:#ff4444">DENY </span>  entity:f7a3c8d5 → finance-db-01   intent:ControlSignal   score:42   intent:risk -25',
-  '<span style="color:#39FF14">ALLOW</span>  entity:a4f3c2b1 → ml-cluster-01   intent:Heartbeat       score:240  0.8ms',
+  '<span style="color:var(--green-primary)">ALLOW</span>  entity:a4f3c2b1 → ml-cluster-01   intent:Heartbeat       score:240  0.8ms',
 ]
 let tickerIdx = 0
 let tickerInterval: any = null
@@ -175,12 +175,12 @@ onUnmounted(() => {
   padding: 80px 0;
   background: #050A05; /* Slightly darker to differentiate from product */
   position: relative;
-  border-top: 1px solid rgba(57, 255, 20, 0.1);
+  border-top: 1px solid rgba(0, 255, 159, 0.1);
   overflow: hidden;
 }
 .product-section {
-  padding: 80px 0;
-  background: var(--bg-void);
+  padding: 120px 0;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -214,30 +214,21 @@ onUnmounted(() => {
 .kill-chain-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 2px;
+  gap: 16px;
   position: relative;
   z-index: 2;
-  background: rgba(57, 255, 20, 0.1);
 }
 
 .kc-stage {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
   padding: 32px 20px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
-.kc-stage:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-active);
-}
-
 .kc-stage.active {
-  background: var(--bg-card-hover);
-  border-color: var(--green-primary);
-  border-top-width: 2px;
+  border-color: var(--green-bright);
+  box-shadow: var(--glow-md), inset 0 0 20px var(--green-ghost);
   z-index: 3;
 }
 
@@ -263,11 +254,8 @@ onUnmounted(() => {
 
 /* Detail Panel */
 .detail-panel {
-  background: var(--bg-card);
-  border: 1px solid var(--border-active);
-  border-top: 2px solid var(--green-primary);
-  margin-top: 2px;
-  box-shadow: var(--glow-md);
+  margin-top: 16px;
+  border-top: 2px solid var(--green-bright);
 }
 
 .detail-content {
@@ -337,7 +325,7 @@ onUnmounted(() => {
 }
 
 .ticker-time {
-  color: rgba(57, 255, 20, 0.3);
+  color: rgba(0, 255, 159, 0.3);
   margin-right: 12px;
 }
 
@@ -345,16 +333,14 @@ onUnmounted(() => {
 .capability-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  margin-top: 48px;
-  background: var(--border-subtle);
+  gap: 24px;
+  margin-top: 64px;
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .cap-card {
-  background: var(--bg-void);
   padding: 40px 32px;
 }
 

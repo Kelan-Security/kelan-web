@@ -18,9 +18,9 @@ const scrollTo = (id: string) => {
         <div class="footer-brand">
           <div class="logo">
             <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-              <path d="M14 2L25 8V20L14 26L3 20V8L14 2Z" stroke="#39ff14" stroke-width="1.5" fill="none"/>
-              <path d="M14 2L14 8M14 20L14 26M3 8L8 11M20 17L25 20M3 20L8 17M20 11L25 8" stroke="#39ff14" stroke-width="0.75" opacity="0.5"/>
-              <circle cx="14" cy="14" r="3" fill="#39ff14" opacity="0.8"/>
+              <path d="M14 2L25 8V20L14 26L3 20V8L14 2Z" stroke="var(--green-primary)" stroke-width="1.5" fill="none"/>
+              <path d="M14 2L14 8M14 20L14 26M3 8L8 11M20 17L25 20M3 20L8 17M20 11L25 8" stroke="var(--green-primary)" stroke-width="0.75" opacity="0.5"/>
+              <circle cx="14" cy="14" r="3" fill="var(--green-primary)" opacity="0.8"/>
             </svg>
             <span class="logo-text">KELAN SECURITY</span>
           </div>
@@ -61,7 +61,7 @@ const scrollTo = (id: string) => {
 
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <p class="copyright mono">© 2026 Kelan Security Security</p>
+        <p class="copyright mono">© 2026 Kela Security</p>
         <p class="rights mono">All rights reserved.</p>
       </div>
     </div>
@@ -71,8 +71,8 @@ const scrollTo = (id: string) => {
 <style scoped>
 .footer {
   position: relative;
-  padding: 80px 6vw 120px;
-  background: var(--bg-void);
+  padding: 64px 6vw 80px;
+  background: transparent;
   border-top: 1px solid var(--border-subtle);
   overflow: hidden;
 }
@@ -80,13 +80,13 @@ const scrollTo = (id: string) => {
   position: absolute; bottom: 0; left: 50%;
   transform: translateX(-50%);
   width: 60%; height: 60%;
-  background: radial-gradient(ellipse at bottom, rgba(57,255,20,0.05) 0%, transparent 60%);
+  background: radial-gradient(ellipse at bottom, rgba(0, 255, 159,0.05) 0%, transparent 60%);
   pointer-events: none;
 }
 .footer-content { position: relative; z-index: 2; }
 .footer-grid {
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 40px; margin-bottom: 60px;
+  gap: 32px; margin-bottom: 48px;
 }
 .logo {
   display: flex; align-items: center; gap: 12px;

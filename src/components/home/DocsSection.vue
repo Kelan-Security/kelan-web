@@ -14,7 +14,7 @@
       <!-- Three path cards -->
       <div v-if="currentView === 'paths'" class="docs-paths" id="docs-paths">
         <!-- Path 1: Free / Open Source -->
-        <div class="docs-path-card" @click="showDocsSection('opensource')">
+        <div class="docs-path-card glass-panel" @click="showDocsSection('opensource')">
           <div class="docs-path-icon">◈</div>
           <div class="docs-path-tier">FREE & OPEN SOURCE</div>
           <div class="docs-path-title">Self-host with your own API keys</div>
@@ -33,7 +33,7 @@
         </div>
 
         <!-- Path 2: GitHub / SDK -->
-        <div class="docs-path-card" @click="openGitHub">
+        <div class="docs-path-card glass-panel" @click="openGitHub">
           <div class="docs-path-icon">⬡</div>
           <div class="docs-path-tier">SOURCE CODE</div>
           <div class="docs-path-title">Read the code. Audit. Contribute.</div>
@@ -52,7 +52,7 @@
         </div>
 
         <!-- Path 3: Paid / Enterprise -->
-        <div class="docs-path-card" @click="showDocsSection('enterprise')">
+        <div class="docs-path-card glass-panel" @click="showDocsSection('enterprise')">
           <div class="docs-path-icon">◆</div>
           <div class="docs-path-tier">PAID PLANS</div>
           <div class="docs-path-title">Managed deployment. Unlimited scale.</div>
@@ -110,7 +110,7 @@
               <pre class="docs-code">docker run -d \
   -p 3000:3000 \
   -p 9999:9999/udp \
-  -e GEMINI_API_KEY=<span style="color:#39FF14">your_key_here</span> \
+  -e GEMINI_API_KEY=<span style="color:var(--green-primary)">your_key_here</span> \
   -e AITP_JWT_SECRET=$(openssl rand -base64 48) \
   -v kelan_data:/app/data \
   ghcr.io/kelan-security/kelan-core:latest</pre>
@@ -122,7 +122,7 @@
   | python3 -m json.tool
 
 <span style="color:#6B7A6B"># Save the token from the response:</span>
-<span style="color:#39FF14">TOKEN</span>=$(curl -s -X POST http://localhost:3000/api/auth/signin \
+<span style="color:var(--green-primary)">TOKEN</span>=$(curl -s -X POST http://localhost:3000/api/auth/signin \
   -H 'Content-Type: application/json' \
   -d '{"email":"you@example.com","password":"StrongPass123!"}' | python3 -c "import sys,json; print(json.load(sys.stdin)['token'])")</pre>
 
@@ -252,7 +252,7 @@ kelan-agent status</pre>
               <pre class="docs-code">EntityID = SHA-256(Ed25519_PublicKey)   // 32 bytes, stable
 S_merged = 0.4 × S_rules + 0.6 × S_AI  // hybrid trust
 Verdict:  Allow ≥128 | Monitor 64–127 | Deny &lt;64</pre>
-              <p class="docs-p">Read the full research paper: <a href="#" style="color:#39FF14;">arXiv:2026.XXXXX</a></p>
+              <p class="docs-p">Read the full research paper: <a href="#" style="color:var(--green-primary);">arXiv:2026.XXXXX</a></p>
             </div>
 
             <!-- Intents -->
@@ -309,7 +309,7 @@ session.send(b"payload").await?;</pre>
             <div v-if="currentDoc === 'api'" class="doc-page active">
               <div class="docs-breadcrumb">Open Source → REST API</div>
               <h1 class="docs-h1">REST API</h1>
-              <p class="docs-p">All endpoints except signup/signin require <code style="color:#39FF14;background:#050A05;padding:2px 6px;">Authorization: Bearer &lt;JWT&gt;</code></p>
+              <p class="docs-p">All endpoints except signup/signin require <code style="color:var(--green-primary);background:#050A05;padding:2px 6px;">Authorization: Bearer &lt;JWT&gt;</code></p>
               <pre class="docs-code">POST /api/auth/signup       → create org, returns JWT
 POST /api/auth/signin       → login, returns JWT
 GET  /api/entities          → list enrolled devices
@@ -344,7 +344,7 @@ WS   /ws?token=&lt;JWT&gt;       → live event stream</pre>
             Email us to get started →
           </a>
           <p style="color:#6B7A6B;font-size:13px;margin-top:20px;">
-            Or <a @click="viewPricing" style="color:#39FF14;cursor:pointer;">view pricing details</a>
+            Or <a @click="viewPricing" style="color:var(--green-primary);cursor:pointer;">view pricing details</a>
           </p>
         </div>
       </div>
@@ -391,37 +391,34 @@ onMounted(() => {
 
 <style scoped>
 .docs-section { 
-  padding: 100px 0; 
-  background: #0A0F0A; 
+  padding: 120px 0; 
+  background: transparent; 
 }
 
 .docs-paths {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  max-width: 1100px;
+  gap: 24px;
+  max-width: 1200px;
   margin: 0 auto;
-  background: rgba(57,255,20,0.08);
 }
 
 .docs-path-card {
-  background: #0A0F0A;
-  padding: 40px 32px;
+  padding: 48px 32px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.docs-path-card:hover { background: #0F1A0F; }
 
 .docs-path-icon {
   font-size: 28px;
-  color: #39FF14;
+  color: var(--green-primary);
   margin-bottom: 16px;
 }
 .docs-path-tier {
   font-family: monospace;
   font-size: 10px;
   letter-spacing: 0.15em;
-  color: #39FF14;
+  color: var(--green-primary);
   margin-bottom: 8px;
 }
 .docs-path-title {
@@ -444,26 +441,28 @@ onMounted(() => {
   margin-bottom: 24px;
 }
 .docs-tag {
-  font-family: monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
-  padding: 3px 8px;
-  border: 1px solid rgba(57,255,20,0.25);
-  color: #6B7A6B;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-secondary);
 }
 .docs-path-cta {
   font-family: monospace;
   font-size: 13px;
-  color: #39FF14;
+  color: var(--green-primary);
 }
 
 .docs-content { max-width: 1100px; margin: 0 auto; }
 .docs-back {
   font-family: monospace;
   font-size: 12px;
-  color: #39FF14;
+  color: var(--green-primary);
   cursor: pointer;
   padding: 16px 0;
-  border-bottom: 1px solid rgba(57,255,20,0.1);
+  border-bottom: 1px solid rgba(0, 255, 159,0.1);
   margin-bottom: 32px;
 }
 
@@ -476,7 +475,7 @@ onMounted(() => {
 .docs-nav-group {
   font-family: monospace;
   font-size: 10px;
-  color: rgba(57,255,20,0.4);
+  color: rgba(0, 255, 159,0.4);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin: 24px 0 12px;
@@ -491,7 +490,7 @@ onMounted(() => {
   transition: all 0.15s;
 }
 .docs-nav-item:hover { color: #FFF; }
-.docs-nav-item.active { color: #39FF14; border-left-color: #39FF14; padding-left: 16px; }
+.docs-nav-item.active { color: var(--green-primary); border-left-color: var(--green-primary); padding-left: 16px; }
 
 .docs-body { min-width: 0; padding-bottom: 100px; }
 .docs-breadcrumb {
@@ -513,7 +512,7 @@ onMounted(() => {
   color: #FFF;
   margin: 32px 0 12px;
   padding-left: 12px;
-  border-left: 2px solid #39FF14;
+  border-left: 2px solid var(--green-primary);
 }
 .docs-p {
   color: #6B7A6B;
@@ -523,7 +522,7 @@ onMounted(() => {
 }
 .docs-code {
   background: #050A05;
-  border: 1px solid rgba(57,255,20,0.12);
+  border: 1px solid rgba(0, 255, 159,0.12);
   padding: 20px 24px;
   font-family: monospace;
   font-size: 12px;
@@ -534,8 +533,8 @@ onMounted(() => {
   white-space: pre;
 }
 .docs-callout {
-  background: rgba(57,255,20,0.03);
-  border-left: 2px solid rgba(57,255,20,0.3);
+  background: rgba(0, 255, 159,0.03);
+  border-left: 2px solid rgba(0, 255, 159,0.3);
   padding: 16px 20px;
   font-size: 14px;
   color: #6B7A6B;
@@ -551,7 +550,7 @@ onMounted(() => {
 }
 
 .price-btn-primary {
-  background: #39FF14;
+  background: var(--green-primary);
   color: #000;
   font-family: monospace;
   font-size: 13px;
@@ -565,8 +564,8 @@ onMounted(() => {
 @media (max-width: 1024px) {
   .docs-paths { grid-template-columns: 1fr; }
   .docs-layout { grid-template-columns: 1fr; }
-  .docs-nav { position: static; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; border-bottom: 1px solid rgba(57,255,20,0.1); padding-bottom: 20px; }
+  .docs-nav { position: static; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; border-bottom: 1px solid rgba(0, 255, 159,0.1); padding-bottom: 20px; }
   .docs-nav-group { display: none; }
-  .docs-nav-item { border: 1px solid rgba(57,255,20,0.2); padding: 6px 12px; border-left: 1px solid rgba(57,255,20,0.2); }
+  .docs-nav-item { border: 1px solid rgba(0, 255, 159,0.2); padding: 6px 12px; border-left: 1px solid rgba(0, 255, 159,0.2); }
 }
 </style>

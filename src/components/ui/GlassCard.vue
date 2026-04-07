@@ -1,5 +1,5 @@
 <template>
-  <div class="glass-card" :class="{ glow: withGlow }">
+  <div class="glass-card glass-panel" :class="{ 'card-elevate': withGlow }">
     <slot />
   </div>
 </template>
@@ -10,26 +10,26 @@ defineProps<{ withGlow?: boolean }>()
 
 <style scoped>
 .glass-card {
-  background: var(--bg-glass);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--card-radius);
-  padding: 28px;
-  backdrop-filter: blur(12px);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  padding: 32px;
 }
+
 .glass-card::before {
   content: '';
-  position: absolute; top: 0; left: 0; right: 0;
+  position: absolute; 
+  top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(57,255,20,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.2;
+  transition: opacity 0.4s;
+  pointer-events: none;
 }
-.glass-card:hover {
-  border-color: var(--border-card);
-  background: var(--bg-card-hover);
+
+.glass-card:hover::before {
+  opacity: 0.6;
 }
-.glass-card.glow:hover {
-  box-shadow: var(--glow-md);
+
+.glass-card.card-elevate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
 }
 </style>

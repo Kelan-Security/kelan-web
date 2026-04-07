@@ -6,7 +6,7 @@
         <div class="section-label">[ PRICING ]</div>
         <h2 class="section-title">
           Transparent pricing.<br>
-          <span style="color:#39FF14;">Start free. Scale with confidence.</span>
+          <span style="color:var(--green-primary);">Start free. Scale with confidence.</span>
         </h2>
         <p class="section-sub">
           Every tier includes Ed25519 identity verification, Gemini 2.5 trust evaluation,
@@ -16,7 +16,7 @@
 
       <div class="pricing-grid">
         <!-- FREE / OPEN SOURCE -->
-        <div class="price-card">
+        <div class="price-card glass-panel">
           <div class="price-tier-label">FREE & OPEN SOURCE</div>
           <div class="price-amount">$0</div>
           <div class="price-inr">₹0 / forever</div>
@@ -40,7 +40,7 @@
         </div>
 
         <!-- STARTUP -->
-        <div class="price-card">
+        <div class="price-card glass-panel">
           <div class="price-tier-label">STARTUP</div>
           <div class="price-amount">$499</div>
           <div class="price-inr">₹41,500 / month</div>
@@ -63,9 +63,9 @@
         </div>
 
         <!-- ENTERPRISE — featured -->
-        <div class="price-card price-card-featured">
+        <div class="price-card glass-panel price-card-featured">
           <div class="price-featured-badge">MOST POPULAR</div>
-          <div class="price-tier-label" style="color:#39FF14;">ENTERPRISE</div>
+          <div class="price-tier-label" style="color:var(--green-primary);">ENTERPRISE</div>
           <div class="price-amount">$2,000</div>
           <div class="price-inr">₹1,66,500 / month</div>
           <div class="price-desc">
@@ -73,12 +73,12 @@
             customer success manager. For organisations where security is non-negotiable.
           </div>
           <div class="price-features">
-            <div class="price-feat" style="color:#39FF14;">● Unlimited nodes</div>
-            <div class="price-feat" style="color:#39FF14;">● PostgreSQL + air-gap mode</div>
-            <div class="price-feat" style="color:#39FF14;">● SSO (SAML / OIDC)</div>
-            <div class="price-feat" style="color:#39FF14;">● Custom retention policies</div>
-            <div class="price-feat" style="color:#39FF14;">● Priority support (4h SLA)</div>
-            <div class="price-feat" style="color:#39FF14;">● Dedicated CSM</div>
+            <div class="price-feat" style="color:var(--green-primary);">● Unlimited nodes</div>
+            <div class="price-feat" style="color:var(--green-primary);">● PostgreSQL + air-gap mode</div>
+            <div class="price-feat" style="color:var(--green-primary);">● SSO (SAML / OIDC)</div>
+            <div class="price-feat" style="color:var(--green-primary);">● Custom retention policies</div>
+            <div class="price-feat" style="color:var(--green-primary);">● Priority support (4h SLA)</div>
+            <div class="price-feat" style="color:var(--green-primary);">● Dedicated CSM</div>
           </div>
           <a href="mailto:team@kelan.io?subject=Enterprise plan inquiry"
              class="price-btn price-btn-primary">
@@ -87,7 +87,7 @@
         </div>
 
         <!-- DEFENSE -->
-        <div class="price-card">
+        <div class="price-card glass-panel">
           <div class="price-tier-label">DEFENSE</div>
           <div class="price-amount">Custom</div>
           <div class="price-inr">Annual contract</div>
@@ -111,7 +111,7 @@
       </div>
 
       <!-- Pilot offer -->
-      <div class="pilot-strip">
+      <div class="pilot-strip glass-panel">
         <div>
           <div class="pilot-title">Not ready to commit? Run a free 90-day Enterprise pilot.</div>
           <div class="pilot-sub">Full Enterprise features. No credit card required. We help you set it up.</div>
@@ -126,31 +126,28 @@
 
 <style scoped>
 .pricing-section {
-  padding: 100px 0;
-  background: #050705;
+  padding: 120px 0;
+  background: transparent;
   position: relative;
 }
 
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  max-width: 1200px;
+  gap: 24px;
+  max-width: 1300px;
   margin: 0 auto;
-  background: rgba(57,255,20,0.08); /* Grid line color */
 }
 
 .price-card {
-  background: #0A0F0A;
-  padding: 40px 32px;
-  position: relative;
+  padding: 48px 32px;
   display: flex;
   flex-direction: column;
 }
 
 .price-card-featured {
-  background: #0F1A0F;
-  border-top: 2px solid #39FF14;
+  border: 1px solid var(--green-bright);
+  box-shadow: var(--glow-md), var(--glass-shadow);
 }
 
 .price-featured-badge {
@@ -158,7 +155,7 @@
   top: -13px;
   left: 50%;
   transform: translateX(-50%);
-  background: #39FF14;
+  background: var(--green-primary);
   color: #000;
   font-family: monospace;
   font-size: 10px;
@@ -197,7 +194,7 @@
   line-height: 1.6;
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid rgba(57,255,20,0.1);
+  border-bottom: 1px solid rgba(0, 255, 159,0.1);
   flex-grow: 1;
 }
 
@@ -223,18 +220,18 @@
 }
 
 .price-btn-outline {
-  border: 1px solid rgba(57,255,20,0.35);
-  color: #39FF14;
+  border: 1px solid rgba(0, 255, 159,0.35);
+  color: var(--green-primary);
   background: transparent;
 }
 
 .price-btn-outline:hover {
-  background: rgba(57,255,20,0.08);
-  border-color: #39FF14;
+  background: rgba(0, 255, 159,0.08);
+  border-color: var(--green-primary);
 }
 
 .price-btn-primary {
-  background: #39FF14;
+  background: var(--green-primary);
   color: #000;
   font-weight: 700;
 }
@@ -245,11 +242,9 @@
 }
 
 .pilot-strip {
-  max-width: 1200px;
-  margin: 2px auto 0;
-  padding: 32px 40px;
-  background: #0F1A0F;
-  border: 1px solid rgba(57,255,20,0.12);
+  max-width: 1300px;
+  margin: 48px auto 0;
+  padding: 32px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
