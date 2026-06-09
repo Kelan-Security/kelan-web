@@ -28,7 +28,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import SectionBadge from '@/components/ui/SectionBadge.vue'
 import GlowButton from '@/components/ui/GlowButton.vue'
 
-const openContact = () => window.open('mailto:tanush@kelansecurtity.io')
+const openContact = () => window.open('mailto:kernalsecurity@gmail.com')
 
 const blobCanvas = ref<HTMLCanvasElement>()
 const blobGroup = ref<HTMLDivElement>()

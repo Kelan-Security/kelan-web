@@ -54,7 +54,7 @@ const scrollTo = (id: string) => {
           <h4 class="col-title mono">CONNECT</h4>
           <ul class="col-links">
             <li><a href="https://github.com/kelan-security/kelan-core" target="_blank">GitHub</a></li>
-            <li><a href="mailto:tanush@kelansecurtity.io">Contact</a></li>
+            <li><a href="mailto:kernalsecurity@gmail.com">Contact</a></li>
           </ul>
         </div>
       </div>
