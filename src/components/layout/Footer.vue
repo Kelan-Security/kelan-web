@@ -61,7 +61,7 @@ const scrollTo = (id: string) => {
 
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <p class="copyright mono">© 2026 Kela Security</p>
+        <p class="copyright mono">© 2026 Kelan Security</p>
         <p class="rights mono">All rights reserved.</p>
       </div>
     </div>

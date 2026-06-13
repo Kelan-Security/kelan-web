@@ -391,7 +391,7 @@ onMounted(() => {
 
 <style scoped>
 .docs-section { 
-  padding: 120px 0; 
+  padding: 80px 0; 
   background: transparent; 
 }
 

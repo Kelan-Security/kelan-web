@@ -366,7 +366,7 @@ onMounted(() => {
 .contact-section {
   text-align: center;
   background: radial-gradient(ellipse at center, rgba(0, 255, 159,0.04) 0%, transparent 60%);
-  padding: 120px 6vw;
+  padding: 80px 6vw;
 }
 .contact-content { position: relative; z-index: 2; }
 .blob-group {

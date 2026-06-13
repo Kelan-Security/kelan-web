@@ -116,7 +116,7 @@
           <div class="pilot-title">Not ready to commit? Run a free 90-day Enterprise pilot.</div>
           <div class="pilot-sub">Full Enterprise features. No credit card required. We help you set it up.</div>
         </div>
-        <a href="mailto:team@kelan.io?subject=90-day pilot request" class="price-btn price-btn-primary">
+        <a href="#contact" class="price-btn price-btn-primary">
           Request pilot →
         </a>
       </div>

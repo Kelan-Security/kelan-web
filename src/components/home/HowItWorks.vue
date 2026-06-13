@@ -358,7 +358,7 @@ onUnmounted(() => {
   margin-bottom: 8px;
 }
 
-.cap-unit { font-size: 24px; vertical-align: baseline; }
+.cap-unit { font-size: inherit; vertical-align: baseline; }
 
 .cap-desc {
   font-size: 14px;
