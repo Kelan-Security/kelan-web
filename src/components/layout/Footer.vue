@@ -14,31 +14,33 @@ const scrollTo = (id: string) => {
     <div class="footer-bg"></div>
     <div class="container footer-content">
       <div class="footer-grid">
-        <!-- Brand -->
+        <!-- Brand & Status -->
         <div class="footer-brand">
           <div class="logo">
-            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-              <path d="M14 2L25 8V20L14 26L3 20V8L14 2Z" stroke="var(--green-primary)" stroke-width="1.5" fill="none"/>
-              <path d="M14 2L14 8M14 20L14 26M3 8L8 11M20 17L25 20M3 20L8 17M20 11L25 8" stroke="var(--green-primary)" stroke-width="0.75" opacity="0.5"/>
-              <circle cx="14" cy="14" r="3" fill="var(--green-primary)" opacity="0.8"/>
-            </svg>
+            <img src="@/assets/MAIN_LG.png" alt="Kelan Security Logo" class="logo-img" />
             <span class="logo-text">KELAN SECURITY</span>
           </div>
           <p class="tagline">The Network Has a Brain Now.</p>
+          
+          <!-- Live Operational Status Indicator -->
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text mono">All systems operational</span>
+          </div>
         </div>
 
-        <!-- Services -->
+        <!-- Column 1: Protocol -->
         <div class="footer-col">
-          <h4 class="col-title mono">SERVICES</h4>
+          <h4 class="col-title mono">PROTOCOL</h4>
           <ul class="col-links">
-            <li><a href="#">Detection</a></li>
-            <li><a href="#">Protocol</a></li>
-            <li><a href="#">Sentinel</a></li>
-            <li><a href="#">eBPF Engine</a></li>
+            <li><a href="#threat-demo" @click.prevent="scrollTo('threat-demo')">AITP Gateway</a></li>
+            <li><a href="#sentinel" @click.prevent="scrollTo('sentinel')">eBPF Sentinel</a></li>
+            <li><a href="#product" @click.prevent="scrollTo('product')">Core Engine</a></li>
+            <li><a href="https://github.com/kelan-security/kelan-core" target="_blank" rel="noopener noreferrer">Open Source ↗</a></li>
           </ul>
         </div>
 
-        <!-- Explore -->
+        <!-- Column 2: Explore -->
         <div class="footer-col">
           <h4 class="col-title mono">EXPLORE</h4>
           <ul class="col-links">
@@ -49,20 +51,28 @@ const scrollTo = (id: string) => {
           </ul>
         </div>
 
-        <!-- Connect -->
+        <!-- Column 3: Community -->
         <div class="footer-col">
-          <h4 class="col-title mono">CONNECT</h4>
+          <h4 class="col-title mono">COMMUNITY</h4>
           <ul class="col-links">
-            <li><a href="https://github.com/kelan-security/kelan-core" target="_blank">GitHub</a></li>
-            <li><a href="mailto:kernalsecurity@gmail.com">Contact</a></li>
+            <li><a href="https://github.com/kelan-security/kelan-core" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></li>
+            <li><a href="https://github.com/kelan-security/kelan-core/issues" target="_blank" rel="noopener noreferrer">Issue Tracker ↗</a></li>
+            <li><a href="mailto:kernalsecurity@gmail.com">Email Contact</a></li>
           </ul>
         </div>
       </div>
 
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <p class="copyright mono">© 2026 Kelan Security</p>
-        <p class="rights mono">All rights reserved.</p>
+        <div class="bottom-left">
+          <p class="copyright mono">© 2026 Kelan Security. All rights reserved.</p>
+        </div>
+        <div class="bottom-right">
+          <!-- Flag / Location indicator representing Indian founder origin -->
+          <div class="built-in-india mono">
+            Built with precision in 🇮🇳 India
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -71,58 +81,186 @@ const scrollTo = (id: string) => {
 <style scoped>
 .footer {
   position: relative;
-  padding: 64px 6vw 80px;
-  background: transparent;
-  border-top: 1px solid var(--border-subtle);
+  padding: 100px 6vw 120px;
+  background: var(--bg-void);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
   overflow: hidden;
 }
+
 .footer-bg {
-  position: absolute; bottom: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 60%; height: 60%;
-  background: radial-gradient(ellipse at bottom, rgba(0, 255, 159,0.05) 0%, transparent 60%);
+  position: absolute; 
+  bottom: 0; 
+  left: 50%;
+  transform: translateX(-50%) translateY(35%);
+  width: 90%; 
+  height: 90%;
+  background: radial-gradient(ellipse at bottom, rgba(20, 184, 166, 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
-.footer-content { position: relative; z-index: 2; }
+
+.footer-content { 
+  position: relative; 
+  z-index: 2; 
+}
+
 .footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 32px; margin-bottom: 48px;
+  display: grid; 
+  grid-template-columns: 2.2fr 1fr 1fr 1.2fr;
+  gap: 64px; 
+  margin-bottom: 72px;
 }
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .logo {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; 
+  align-items: center; 
+  gap: 14px;
   font-family: var(--font-display);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
+
+.logo-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(20, 184, 166, 0.2));
+}
+
 .logo-text {
-  font-size: 16px; font-weight: 700; letter-spacing: 0.1em;
+  font-size: 16px; 
+  font-weight: 700; 
+  letter-spacing: 0.15em;
   color: var(--text-primary);
 }
+
 .tagline {
-  color: var(--text-dim); font-size: 14px;
-  max-width: 250px;
+  color: var(--text-dim); 
+  font-size: 14px;
+  max-width: 280px;
+  line-height: 1.6;
 }
+
+/* Status Indicator Pill */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 6px 14px;
+  background: rgba(20, 184, 166, 0.03);
+  border: 1px solid rgba(20, 184, 166, 0.12);
+  border-radius: 100px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green-primary);
+  animation: pulse-status 2.5s infinite ease-in-out;
+}
+
+.status-text {
+  font-size: 9px;
+  color: var(--green-bright);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 .col-title {
-  color: var(--green-primary); font-size: 11px;
-  letter-spacing: 0.15em; margin-bottom: 20px;
+  color: var(--green-primary); 
+  font-size: 11px;
+  letter-spacing: 0.18em; 
+  margin-bottom: 24px;
+  font-weight: 600;
 }
+
 .col-links {
-  list-style: none; padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 12px;
+  list-style: none; 
+  padding: 0; 
+  margin: 0;
+  display: flex; 
+  flex-direction: column; 
+  gap: 14px;
 }
+
 .col-links a {
-  color: var(--text-secondary); text-decoration: none;
-  font-size: 14px; transition: color 0.2s;
+  color: var(--text-secondary); 
+  text-decoration: none;
+  font-size: 14px; 
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.85;
 }
-.col-links a:hover { color: var(--text-primary); }
+
+.col-links a:hover { 
+  color: var(--green-bright); 
+  transform: translateX(6px);
+  opacity: 1;
+}
+
 .footer-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  padding-top: 32px; border-top: 1px solid var(--border-subtle);
-  font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  padding-top: 36px; 
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 11px; 
+  color: var(--text-dim); 
+  letter-spacing: 0.08em;
+}
+
+.copyright {
+  opacity: 0.8;
+}
+
+.built-in-india {
+  font-size: 10px;
+  color: var(--text-dim);
+  opacity: 0.75;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.01);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+@keyframes pulse-status {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@media (max-width: 992px) {
+  .footer-grid { 
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; margin-bottom: 20px; }
-  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-grid { 
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-brand { 
+    grid-column: 1 / -1; 
+    margin-bottom: 24px; 
+  }
+  .footer-bottom { 
+    flex-direction: column; 
+    gap: 16px; 
+    text-align: center; 
+  }
 }
 </style>

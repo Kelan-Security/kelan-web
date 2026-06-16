@@ -48,6 +48,7 @@ onMounted(() => {
   pointer-events: none; z-index: 9999;
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
+  left: -100px; top: -100px;
 }
 .cursor {
   width: 8px; height: 8px;

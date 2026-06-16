@@ -1,5 +1,5 @@
 <template>
-  <section class="hero">
+  <section class="hero" id="hero">
     <!-- Atmospheric background -->
     <div class="hero-bg">
       <div class="bg-glow-1"></div>
@@ -10,7 +10,15 @@
     <!-- Content -->
     <div class="hero-content">
       <div class="hero-text-container">
-        <SectionBadge text="AITP Security Gateway" />
+        <SectionBadge text="AITP Security Gateway">
+          <template #icon>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              <circle cx="12" cy="11" r="3" />
+              <path d="M12 14v4" />
+            </svg>
+          </template>
+        </SectionBadge>
         
         <h1 class="hero-headline display-xl">
           <span class="line">The Network</span>
@@ -82,7 +90,7 @@ const scrollToDocs = () => {
   position: absolute;
   bottom: -10%; right: 5%;
   width: 50%; height: 60%;
-  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+  background: radial-gradient(ellipse, rgba(20, 184, 166, 0.03) 0%, transparent 60%);
   pointer-events: none;
   filter: blur(80px);
 }

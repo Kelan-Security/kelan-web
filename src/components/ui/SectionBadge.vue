@@ -1,6 +1,8 @@
 <template>
   <div class="section-badge mono">
-    <div class="badge-dot"></div>
+    <slot name="icon">
+      <div class="badge-dot"></div>
+    </slot>
     <span class="badge-text">{{ text }}</span>
   </div>
 </template>
@@ -27,11 +29,18 @@ defineProps<{ text: string }>()
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+.section-badge :deep(svg) {
+  color: var(--green-primary);
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
 .badge-dot {
   width: 6px; 
   height: 6px; 
   border-radius: 50%;
-  background: var(--text-dim);
+  background: var(--green-primary);
   animation: pulse-soft 3s ease-in-out infinite;
 }
 
@@ -40,3 +49,4 @@ defineProps<{ text: string }>()
   50% { opacity: 1; }
 }
 </style>
+

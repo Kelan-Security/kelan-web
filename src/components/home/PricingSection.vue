@@ -3,7 +3,6 @@
   <section id="pricing" class="pricing-section">
     <div class="container">
       <div class="text-center">
-        <div class="section-label">[ PRICING ]</div>
         <h2 class="section-title">
           Transparent pricing.<br>
           <span style="color:var(--green-primary);">Start free. Scale with confidence.</span>
@@ -21,13 +20,13 @@
           <div class="price-amount">$0</div>
           <div class="price-inr">₹0 / forever</div>
           <div class="price-desc">
-            Full source code on GitHub. Self-host with your own Gemini API key.
+            Full source code on GitHub. Self-host with local AI models for free.
             Perfect for developers, researchers, and security teams evaluating Kelan.
           </div>
           <div class="price-features">
             <div class="price-feat">● Up to 5 nodes</div>
             <div class="price-feat">● SQLite database</div>
-            <div class="price-feat">● Gemini 2.5 trust evaluation</div>
+            <div class="price-feat">● Local AI model support (free)</div>
             <div class="price-feat">● Sentinel monitoring</div>
             <div class="price-feat">● Community support (GitHub Issues)</div>
             <div class="price-feat" style="color:#6B7A6B;">○ Non-commercial use (BSL 1.1)</div>
@@ -45,13 +44,12 @@
           <div class="price-amount">$499</div>
           <div class="price-inr">₹41,500 / month</div>
           <div class="price-desc">
-            Commercial license for growing teams. Postgres support, webhooks,
-            and email support included. Up to 50 enrolled nodes.
+            Commercial license for growing teams. Personal AI model integration (either API-based or local running), Postgres support, webhooks, and email support included.
           </div>
           <div class="price-features">
             <div class="price-feat">● Up to 50 nodes</div>
             <div class="price-feat">● PostgreSQL support</div>
-            <div class="price-feat">● Gemini 2.5 trust evaluation</div>
+            <div class="price-feat">● Personal/custom AI model integration</div>
             <div class="price-feat">● Sentinel + Threat agent</div>
             <div class="price-feat">● Webhook integrations</div>
             <div class="price-feat">● Email support (48h SLA)</div>
@@ -69,20 +67,19 @@
           <div class="price-amount">$2,000</div>
           <div class="price-inr">₹1,66,500 / month</div>
           <div class="price-desc">
-            Unlimited scale. Air-gap mode, SSO, custom retention, and a dedicated
-            customer success manager. For organisations where security is non-negotiable.
+            Unlimited scale. Nvidia Nemotron implementation for best yielding results, quick actions, and real-time displays. Air-gap mode, SSO, and a dedicated customer success manager.
           </div>
           <div class="price-features">
             <div class="price-feat" style="color:var(--green-primary);">● Unlimited nodes</div>
+            <div class="price-feat" style="color:var(--green-primary);">● Nvidia Nemotron integration</div>
             <div class="price-feat" style="color:var(--green-primary);">● PostgreSQL + air-gap mode</div>
             <div class="price-feat" style="color:var(--green-primary);">● SSO (SAML / OIDC)</div>
             <div class="price-feat" style="color:var(--green-primary);">● Custom retention policies</div>
             <div class="price-feat" style="color:var(--green-primary);">● Priority support (4h SLA)</div>
-            <div class="price-feat" style="color:var(--green-primary);">● Dedicated CSM</div>
           </div>
           <a href="mailto:team@kelan.io?subject=Enterprise plan inquiry"
              class="price-btn price-btn-primary">
-            Contact us →
+             Contact us →
           </a>
         </div>
 
@@ -92,12 +89,12 @@
           <div class="price-amount">Custom</div>
           <div class="price-inr">Annual contract</div>
           <div class="price-desc">
-            Full air-gap deployment, FIPS 140-2 compliant mode, clearance-level
-            gating, and source code escrow. Built for classified environments.
+            Full air-gap deployment, custom agentic models integration (Nvidia Nemotron, etc.), FIPS 140-2 compliance, and source code escrow.
           </div>
           <div class="price-features">
             <div class="price-feat">● Unlimited nodes</div>
             <div class="price-feat">● Full air-gap (local LLM)</div>
+            <div class="price-feat">● Nvidia Nemotron & agentic model support</div>
             <div class="price-feat">● FIPS 140-2 compliance mode</div>
             <div class="price-feat">● Clearance-level enforcement</div>
             <div class="price-feat">● Source code escrow</div>

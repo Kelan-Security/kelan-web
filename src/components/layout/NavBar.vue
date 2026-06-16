@@ -2,14 +2,7 @@
   <nav class="navbar">
     <!-- Logo -->
     <div class="logo">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <!-- Hexagon mark made of circuit lines -->
-        <path d="M14 2L25 8V20L14 26L3 20V8L14 2Z"
-              stroke="var(--green-primary)" stroke-width="1.5" fill="none"/>
-        <path d="M14 2L14 8M14 20L14 26M3 8L8 11M20 17L25 20M3 20L8 17M20 11L25 8"
-              stroke="var(--green-primary)" stroke-width="0.75" opacity="0.5"/>
-        <circle cx="14" cy="14" r="3" fill="var(--green-primary)" opacity="0.8"/>
-      </svg>
+      <img src="@/assets/MAIN_LG.png" alt="Kelan Security Logo" class="logo-img" />
       <span class="logo-text">KELAN SECURITY</span>
     </div>
 
@@ -47,9 +40,30 @@ const scrollTo = (id: string) => {
   cursor: pointer;
 }
 
+.logo-img {
+  /* USER: Adjust logo size here */
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
 .logo-text {
   font-size: 18px; font-weight: 600; letter-spacing: 0.15em;
   color: var(--text-primary);
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid transparent; /* Defaults to transparent so it disappears when done */
+  padding-right: 6px; /* Separates the blinking cursor from the last letter (Y) */
+
+  /* --- TYPEWRITER CONFIGURATION --- */
+  /* USER: Adjust width to match the size of the word (e.g. 16.5ch or 180px) */
+  width: 16.5ch;
+  /* USER: Adjust typewriter speed/duration here (e.g. 1.5s is faster, 3s is slower) */
+  /* Note: To stop blinking when typing is done, ensure blink-caret duration * iterations = typing duration */
+  animation: 
+    typing 1.5s steps(14, end) forwards,
+    blink-caret 0.75s step-end 2;
 }
 
 .logo-text::after {
@@ -102,5 +116,16 @@ const scrollTo = (id: string) => {
 
 .nav-contact-btn {
   transform: scale(0.9);
+}
+
+/* --- TYPEWRITER KEYFRAMES --- */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 16.5ch } /* Matches the logo-text width config */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: var(--green-primary) }
+  50% { border-color: transparent; }
 }
 </style>
