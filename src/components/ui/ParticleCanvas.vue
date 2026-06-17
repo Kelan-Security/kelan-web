@@ -33,6 +33,7 @@ const createParticles = (canvas: HTMLCanvasElement) => {
 }
 
 const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+  if (!isMounted) return
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   
   const interactionRadius = 200
@@ -56,7 +57,7 @@ const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
     p.vx += (p.baseVx - p.vx) * 0.02
     p.vy += (p.baseVy - p.vy) * 0.02
 
-    p.x += p.vx; p.y += p.vy; p.pulse += 0.02
+    p.x += p.vx; p.y += p.vy; p.pulse = (p.pulse + 0.02) % (Math.PI * 2)
     
     if (p.x < 0) p.x = canvas.width
     if (p.x > canvas.width) p.x = 0
@@ -109,37 +110,43 @@ const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
   animId = requestAnimationFrame(() => draw(canvas, ctx))
 }
 
+let isMounted = false
+
+const resize = () => {
+  const canvas = canvasRef.value
+  if (!canvas) return
+  canvas.width  = canvas.offsetWidth || window.innerWidth
+  canvas.height = canvas.offsetHeight || window.innerHeight
+  createParticles(canvas)
+}
+
+const onMouseMove = (e: MouseEvent) => {
+  mouse.x = e.clientX
+  mouse.y = e.clientY
+  mouse.active = true
+}
+
+const onMouseLeave = () => { mouse.active = false }
+
 onMounted(() => {
+  isMounted = true
   const canvas = canvasRef.value!
   const ctx = canvas.getContext('2d')!
   
-  const resize = () => {
-    canvas.width  = canvas.offsetWidth || window.innerWidth
-    canvas.height = canvas.offsetHeight || window.innerHeight
-    createParticles(canvas)
-  }
   resize()
   window.addEventListener('resize', resize)
-
-  const onMouseMove = (e: MouseEvent) => {
-    // map client to canvas bounds if needed, assuming absolute fullscreen
-    mouse.x = e.clientX
-    mouse.y = e.clientY
-    mouse.active = true
-  }
-  const onMouseLeave = () => { mouse.active = false }
-
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseout', onMouseLeave)
 
   draw(canvas, ctx)
-  
-  onUnmounted(() => {
-    cancelAnimationFrame(animId)
-    window.removeEventListener('resize', resize)
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('mouseout', onMouseLeave)
-  })
+})
+
+onUnmounted(() => {
+  isMounted = false
+  cancelAnimationFrame(animId)
+  window.removeEventListener('resize', resize)
+  window.removeEventListener('mousemove', onMouseMove)
+  window.removeEventListener('mouseout', onMouseLeave)
 })
 </script>
 

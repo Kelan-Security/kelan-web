@@ -11,41 +11,69 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const orbCanvas = ref<HTMLCanvasElement>()
 const wrapperRef = ref<HTMLDivElement>()
 let animId: number
+let isMounted = false
 
 interface OrbParticle {
   theta: number; phi: number; r: number;
   speed: number; size: number; opacity: number;
 }
 
+const cx = 250, cy = 250, R = 150
+const pts: OrbParticle[] = []
+
+let rotY = 0
+let targetRotX = 0
+let targetRotY = 0
+let currentRotX = 0
+
+const initParticles = () => {
+  pts.length = 0
+  for (let i = 0; i < 900; i++) {
+    pts.push({
+      theta: Math.random() * Math.PI * 2,
+      phi:   Math.acos(2 * Math.random() - 1),
+      r:     R * (0.85 + Math.random() * 0.3),
+      speed: (Math.random() - 0.5) * 0.003,
+      size:  Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.7 + 0.2, 
+    })
+  }
+}
+
+const onMouseMove = (e: MouseEvent) => {
+  if (!wrapperRef.value) return
+  const rect = wrapperRef.value.getBoundingClientRect()
+  // normalized -1 to 1 based on center of sphere wrapper
+  const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1
+  const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1
+  
+  targetRotY = nx * 1.5 // Mouse X pans rotation Y
+  targetRotX = -ny * 0.8 // Mouse Y tilts rotation X
+}
+
+const onMouseLeave = () => {
+  targetRotX = 0
+  targetRotY = 0
+}
+
 onMounted(() => {
+  isMounted = true
   const canvas = orbCanvas.value!
   const ctx = canvas.getContext('2d')!
-  const cx = 250, cy = 250, R = 150
-
-  const pts: OrbParticle[] = Array.from({ length: 900 }, () => ({
-    theta: Math.random() * Math.PI * 2,
-    phi:   Math.acos(2 * Math.random() - 1),
-    r:     R * (0.85 + Math.random() * 0.3),
-    speed: (Math.random() - 0.5) * 0.003,
-    size:  Math.random() * 2 + 0.5,
-    opacity: Math.random() * 0.7 + 0.2, 
-  }))
-
-  let rotY = 0
-  let targetRotX = 0
-  let targetRotY = 0
-  let currentRotX = 0
+  
+  initParticles()
 
   const draw = () => {
+    if (!isMounted) return
     ctx.clearRect(0, 0, 500, 500)
-    rotY += 0.005 
+    rotY = (rotY + 0.005) % (Math.PI * 2)
 
     // Smooth interoplation for mouse tracking
     currentRotX += (targetRotX - currentRotX) * 0.05
     const totalRotY = rotY + targetRotY * 0.5
 
     pts.forEach(p => {
-      p.theta += p.speed
+      p.theta = (p.theta + p.speed) % (Math.PI * 2)
       
       // Basic 3D spherical rendering
       // Apply base rotation
@@ -78,29 +106,15 @@ onMounted(() => {
   }
   draw()
 
-  const onMouseMove = (e: MouseEvent) => {
-    if (!wrapperRef.value) return
-    const rect = wrapperRef.value.getBoundingClientRect()
-    // normalized -1 to 1 based on center of sphere wrapper
-    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1
-    const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1
-    
-    targetRotY = nx * 1.5 // Mouse X pans rotation Y
-    targetRotX = -ny * 0.8 // Mouse Y tilts rotation X
-  }
-  const onMouseLeave = () => {
-    targetRotX = 0
-    targetRotY = 0
-  }
-
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseout', onMouseLeave)
-  
-  onUnmounted(() => {
-    cancelAnimationFrame(animId)
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('mouseout', onMouseLeave)
-  })
+})
+
+onUnmounted(() => {
+  isMounted = false
+  cancelAnimationFrame(animId)
+  window.removeEventListener('mousemove', onMouseMove)
+  window.removeEventListener('mouseout', onMouseLeave)
 })
 </script>
 

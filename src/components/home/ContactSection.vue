@@ -33,6 +33,7 @@ const openContact = () => window.open('mailto:kernalsecurity@gmail.com')
 const blobCanvas = ref<HTMLCanvasElement>()
 const blobGroup = ref<HTMLDivElement>()
 let animId: number
+let isMounted = false
 
 interface OrbitParticle {
   ring: 1 | 2;
@@ -102,7 +103,89 @@ const initParticles = (w: number, h: number) => {
   }
 }
 
+const onMouseMove = (e: MouseEvent) => {
+  if (!blobGroup.value) return
+  const rect = blobGroup.value.getBoundingClientRect()
+  const cx = rect.left + rect.width / 2
+  const cy = rect.top + rect.height / 2
+  
+  const dx = e.clientX - cx
+  const dy = e.clientY - cy
+  const dist = Math.sqrt(dx * dx + dy * dy)
+  
+  const maxDist = 350
+  proximity = Math.max(0, Math.min(1, 1 - dist / maxDist))
+  
+  targetTiltY = (dx / maxDist) * 0.3
+  targetTiltX = -(dy / maxDist) * 0.3
+  mouse.active = true
+}
+
+const onMouseLeave = () => {
+  proximity = 0
+  targetTiltX = 0
+  targetTiltY = 0
+  mouse.active = false
+}
+
+const onTouchMove = (e: TouchEvent) => {
+  if (e.touches.length === 0) return
+  const touch = e.touches[0]
+  if (!blobGroup.value) return
+  const rect = blobGroup.value.getBoundingClientRect()
+  const cx = rect.left + rect.width / 2
+  const cy = rect.top + rect.height / 2
+  
+  const dx = touch.clientX - cx
+  const dy = touch.clientY - cy
+  const dist = Math.sqrt(dx * dx + dy * dy)
+  
+  const maxDist = 350
+  proximity = Math.max(0, Math.min(1, 1 - dist / maxDist))
+  
+  targetTiltY = (dx / maxDist) * 0.3
+  targetTiltX = -(dy / maxDist) * 0.3
+  mouse.active = true
+}
+
+const onTouchEnd = () => {
+  proximity = 0
+  targetTiltX = 0
+  targetTiltY = 0
+  mouse.active = false
+}
+
+const handleOrientation = (e: DeviceOrientationEvent) => {
+  if (e.beta === null || e.gamma === null) return
+  if (mouse.active) return // prioritize direct mouse/touch
+  
+  // Assume typical mobile viewing holding tilt is beta = 45 degrees
+  const b = Math.max(-30, Math.min(30, e.beta - 45))
+  const g = Math.max(-30, Math.min(30, e.gamma))
+  
+  targetTiltX = (b / 30) * 0.3
+  targetTiltY = (g / 30) * 0.3
+  proximity = Math.min(1, Math.sqrt(targetTiltX * targetTiltX + targetTiltY * targetTiltY) * 2)
+}
+
+const requestPermission = () => {
+  // @ts-ignore
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    // @ts-ignore
+    DeviceOrientationEvent.requestPermission()
+      .then((response: string) => {
+        if (response === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation)
+        }
+      })
+      .catch(console.error)
+  }
+  window.removeEventListener('click', requestPermission)
+}
+
 onMounted(() => {
+  isMounted = true
+  
   // Resolve CSS color variable dynamically to keep theme synced
   const dummy = document.createElement('div')
   dummy.style.color = 'var(--green-primary)'
@@ -122,71 +205,6 @@ onMounted(() => {
   if (!canvas) return
   
   initParticles(canvas.width, canvas.height)
-  
-  const onMouseMove = (e: MouseEvent) => {
-    if (!blobGroup.value) return
-    const rect = blobGroup.value.getBoundingClientRect()
-    const cx = rect.left + rect.width / 2
-    const cy = rect.top + rect.height / 2
-    
-    const dx = e.clientX - cx
-    const dy = e.clientY - cy
-    const dist = Math.sqrt(dx * dx + dy * dy)
-    
-    const maxDist = 350
-    proximity = Math.max(0, Math.min(1, 1 - dist / maxDist))
-    
-    targetTiltY = (dx / maxDist) * 0.3
-    targetTiltX = -(dy / maxDist) * 0.3
-    mouse.active = true
-  }
-
-  const onMouseLeave = () => {
-    proximity = 0
-    targetTiltX = 0
-    targetTiltY = 0
-    mouse.active = false
-  }
-
-  const onTouchMove = (e: TouchEvent) => {
-    if (e.touches.length === 0) return
-    const touch = e.touches[0]
-    if (!blobGroup.value) return
-    const rect = blobGroup.value.getBoundingClientRect()
-    const cx = rect.left + rect.width / 2
-    const cy = rect.top + rect.height / 2
-    
-    const dx = touch.clientX - cx
-    const dy = touch.clientY - cy
-    const dist = Math.sqrt(dx * dx + dy * dy)
-    
-    const maxDist = 350
-    proximity = Math.max(0, Math.min(1, 1 - dist / maxDist))
-    
-    targetTiltY = (dx / maxDist) * 0.3
-    targetTiltX = -(dy / maxDist) * 0.3
-    mouse.active = true
-  }
-
-  const onTouchEnd = () => {
-    proximity = 0
-    targetTiltX = 0
-    targetTiltY = 0
-    mouse.active = false
-  }
-
-  const handleOrientation = (e: DeviceOrientationEvent) => {
-    if (e.beta === null || e.gamma === null) return
-    if (mouse.active) return // prioritize direct mouse/touch
-    
-    // Assume typical mobile viewing holding tilt is beta = 45 degrees
-    const b = Math.max(-30, Math.min(30, e.beta - 45))
-    const g = Math.max(-30, Math.min(30, e.gamma))
-    
-    targetTiltX = (b / 30) * 0.3
-    targetTiltY = (g / 30) * 0.3
-    proximity = Math.min(1, Math.sqrt(targetTiltX * targetTiltX + targetTiltY * targetTiltY) * 2)
-  }
 
   window.addEventListener('mousemove', onMouseMove)
   window.addEventListener('mouseleave', onMouseLeave)
@@ -196,23 +214,14 @@ onMounted(() => {
   if (typeof DeviceOrientationEvent !== 'undefined' && 
       // @ts-ignore
       typeof DeviceOrientationEvent.requestPermission === 'function') {
-    const requestPermission = () => {
-      // @ts-ignore
-      DeviceOrientationEvent.requestPermission()
-        .then((response: string) => {
-          if (response === 'granted') {
-            window.addEventListener('deviceorientation', handleOrientation)
-          }
-        })
-        .catch(console.error)
-      window.removeEventListener('click', requestPermission)
-    }
     window.addEventListener('click', requestPermission)
   } else {
     window.addEventListener('deviceorientation', handleOrientation)
   }
 
   const draw = () => {
+    if (!isMounted) return
+    
     const canvas = blobCanvas.value
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -226,13 +235,13 @@ onMounted(() => {
     currentTiltX += (targetTiltX - currentTiltX) * 0.08
     currentTiltY += (targetTiltY - currentTiltY) * 0.08
     
-    // Update rotation angles with proximity acceleration
+    // Update rotation angles with proximity acceleration and modulo clamping
     const speedMult = 1.0 + proximity * 2.0
-    angle1 += baseSpeed * speedMult
-    angle2 -= baseSpeed * speedMult
+    angle1 = (angle1 + baseSpeed * speedMult) % (Math.PI * 2)
+    angle2 = (angle2 - baseSpeed * speedMult) % (Math.PI * 2)
     
-    // Update breathing pulse scale
-    pulsePhase += 0.012
+    // Update breathing pulse scale and modulo clamping
+    pulsePhase = (pulsePhase + 0.012) % (Math.PI * 2)
     const pulse1 = 1.0 + 0.03 * Math.sin(pulsePhase)
     const pulse2 = 1.0 + 0.03 * Math.sin(pulsePhase + 1.2) // offset
     
@@ -330,7 +339,7 @@ onMounted(() => {
     
     // ── DRAW ORBITING PARTICLES ──
     orbitParticles.forEach(p => {
-      p.angle += p.speed * speedMult
+      p.angle = (p.angle + p.speed * speedMult) % (Math.PI * 2)
       
       const ringCx = p.ring === 1 ? cx1 : cx2
       const scaleFactor = p.ring === 1 ? pulse1 : pulse2
@@ -350,15 +359,17 @@ onMounted(() => {
   }
   
   draw()
-  
-  onUnmounted(() => {
-    cancelAnimationFrame(animId)
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('mouseleave', onMouseLeave)
-    window.removeEventListener('touchmove', onTouchMove)
-    window.removeEventListener('touchend', onTouchEnd)
-    window.removeEventListener('deviceorientation', handleOrientation)
-  })
+})
+
+onUnmounted(() => {
+  isMounted = false
+  cancelAnimationFrame(animId)
+  window.removeEventListener('mousemove', onMouseMove)
+  window.removeEventListener('mouseleave', onMouseLeave)
+  window.removeEventListener('touchmove', onTouchMove)
+  window.removeEventListener('touchend', onTouchEnd)
+  window.removeEventListener('deviceorientation', handleOrientation)
+  window.removeEventListener('click', requestPermission)
 })
 </script>
 
