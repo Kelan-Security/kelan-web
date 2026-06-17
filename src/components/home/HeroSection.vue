@@ -33,7 +33,7 @@
 
         <div class="hero-actions">
           <GlowButton label="Get started" variant="solid" @click="scrollToDocs" />
-          <a href="https://github.com/kelan-security/kelan-core"
+          <a href="https://github.com/Kelan-Security/KelancoreV1"
              target="_blank"
              class="hero-link mono">
             ↗ View on GitHub

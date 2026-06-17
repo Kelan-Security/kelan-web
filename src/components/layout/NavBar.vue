@@ -11,7 +11,7 @@
       <a href="#product" class="nav-link mono" @click.prevent="scrollTo('product')">Product</a>
       <a href="#pricing" class="nav-link mono" @click.prevent="scrollTo('pricing')">Pricing</a>
       <a href="#docs" class="nav-link mono" @click.prevent="scrollTo('docs')">Docs</a>
-      <a href="https://github.com/kelan-security/kelan-core"
+      <a href="https://github.com/Kelan-Security/KelancoreV1"
          target="_blank" class="nav-link mono">GitHub</a>
       <GlowButton label="Contact us" variant="pill" @click="scrollTo('contact')" class="nav-contact-btn" />
     </div>

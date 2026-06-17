@@ -31,7 +31,7 @@
             <div class="price-feat">● Community support (GitHub Issues)</div>
             <div class="price-feat" style="color:#6B7A6B;">○ Non-commercial use (BSL 1.1)</div>
           </div>
-          <a href="https://github.com/Kelan-Security/kelan-core"
+          <a href="https://github.com/Kelan-Security/KelancoreV1"
              target="_blank" rel="noopener noreferrer"
              class="price-btn price-btn-outline">
             View on GitHub →

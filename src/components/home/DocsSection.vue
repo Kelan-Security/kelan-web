@@ -164,7 +164,7 @@ docker run -d \
   -e AITP_MODEL_NAME=nemotron \
   -e AITP_JWT_SECRET=$(openssl rand -base64 48) \
   -v kelan_data:/app/data \
-  ghcr.io/kelan-security/kelan-core:latest
+  ghcr.io/kelan-security/kelancorev1:latest
 
 # Or to run with Gemini API:
 docker run -d \
@@ -173,7 +173,7 @@ docker run -d \
   -e GEMINI_API_KEY=<span style="color:var(--green-primary)">your_key_here</span> \
   -e AITP_JWT_SECRET=$(openssl rand -base64 48) \
   -v kelan_data:/app/data \
-  ghcr.io/kelan-security/kelan-core:latest</pre>
+  ghcr.io/kelan-security/kelancorev1:latest</pre>
 
               <h3 class="docs-h3">3. Create your account</h3>
               <pre class="docs-code">curl -s -X POST http://localhost:3000/api/auth/signup \
@@ -264,11 +264,11 @@ docker run -d \
   -e AITP_MODEL_NAME=nemotron \
   -e AITP_JWT_SECRET=$(openssl rand -base64 48) \
   -v kelan_data:/app/data \
-  ghcr.io/kelan-security/kelan-core:latest
+  ghcr.io/kelan-security/kelancorev1:latest
 
 <span style="color:#6B7A6B"># Production (Postgres, nginx, TLS):</span>
-git clone https://github.com/Kelan-Security/kelan-core
-cd kelan-core
+git clone https://github.com/Kelan-Security/KelancoreV1
+cd KelancoreV1
 ./scripts/deploy.sh yourdomain.com you@yourdomain.com</pre>
             </div>
 
@@ -446,7 +446,7 @@ const switchDoc = (id: string) => {
 }
 
 const openGitHub = () => {
-  window.open('https://github.com/Kelan-Security/kelan-core', '_blank')
+  window.open('https://github.com/Kelan-Security/KelancoreV1', '_blank')
 }
 
 const viewPricing = () => {
