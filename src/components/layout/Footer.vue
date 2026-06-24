@@ -36,7 +36,7 @@ const scrollTo = (id: string) => {
             <li><a href="#threat-demo" @click.prevent="scrollTo('threat-demo')">AITP Gateway</a></li>
             <li><a href="#sentinel" @click.prevent="scrollTo('sentinel')">eBPF Sentinel</a></li>
             <li><a href="#product" @click.prevent="scrollTo('product')">Core Engine</a></li>
-            <li><a href="https://github.com/Kelan-Security/KelancoreV1" target="_blank" rel="noopener noreferrer">Open Source ↗</a></li>
+            <li><a href="https://github.com/Kelan-Security/aitp" target="_blank" rel="noopener noreferrer">Open Source ↗</a></li>
           </ul>
         </div>
 
@@ -55,8 +55,8 @@ const scrollTo = (id: string) => {
         <div class="footer-col">
           <h4 class="col-title mono">COMMUNITY</h4>
           <ul class="col-links">
-            <li><a href="https://github.com/Kelan-Security/KelancoreV1" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></li>
-            <li><a href="https://github.com/Kelan-Security/KelancoreV1/issues" target="_blank" rel="noopener noreferrer">Issue Tracker ↗</a></li>
+            <li><a href="https://github.com/Kelan-Security/aitp" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></li>
+            <li><a href="https://github.com/Kelan-Security/aitp/issues" target="_blank" rel="noopener noreferrer">Issue Tracker ↗</a></li>
             <li><a href="mailto:kernalsecurity@gmail.com">Email Contact</a></li>
           </ul>
         </div>

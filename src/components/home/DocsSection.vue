@@ -267,8 +267,8 @@ docker run -d \
   ghcr.io/kelan-security/kelancorev1:latest
 
 <span style="color:#6B7A6B"># Production (Postgres, nginx, TLS):</span>
-git clone https://github.com/Kelan-Security/KelancoreV1
-cd KelancoreV1
+git clone https://github.com/Kelan-Security/aitp
+cd aitp
 ./scripts/deploy.sh yourdomain.com you@yourdomain.com</pre>
             </div>
 
@@ -446,7 +446,7 @@ const switchDoc = (id: string) => {
 }
 
 const openGitHub = () => {
-  window.open('https://github.com/Kelan-Security/KelancoreV1', '_blank')
+  window.open('https://github.com/Kelan-Security/aitp', '_blank')
 }
 
 const viewPricing = () => {
