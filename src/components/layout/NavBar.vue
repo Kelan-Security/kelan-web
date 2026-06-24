@@ -118,6 +118,18 @@ const scrollTo = (id: string) => {
   transform: scale(0.9);
 }
 
+@media (max-width: 960px), (max-height: 860px) {
+  .nav-actions {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px 24px;
+  }
+}
+
 /* --- TYPEWRITER KEYFRAMES --- */
 @keyframes typing {
   from { width: 0 }
